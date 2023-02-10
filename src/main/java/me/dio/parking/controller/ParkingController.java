@@ -70,4 +70,5 @@ public class ParkingController {
         return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
     }
 
+
 }

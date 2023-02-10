@@ -54,8 +54,6 @@ public class ParkingService {
         //recuperar o estacionado - Parking parking = findById(id);
         //atualizar data de saída - parking.setExitDate(LocalDateTime.now());
         //calcular o valor - parking.setBill(ParkingCheckOut.getBill(parking));
-        //parkingRepository.save(parking);
         return null;
     }
-
 }
