@@ -1,5 +1,7 @@
 package me.dio.parking.controller;
 
+import java.util.List;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import me.dio.parking.controller.dto.ParkingCreateDTO;
@@ -10,8 +12,6 @@ import me.dio.parking.service.ParkingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/parking")
@@ -26,13 +26,12 @@ public class ParkingController {
         this.parkingMapper = parkingMapper;
     }
 
-
     @GetMapping
     @ApiOperation("Find all parkings")
     public ResponseEntity<List<ParkingDTO>> findById() {
-        List<Parking> parkingList = parkingService.findAll();
-        List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
-        return ResponseEntity.ok(result);
+    List<Parking> parkingList = parkingService.findAll();
+    List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
+    return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")

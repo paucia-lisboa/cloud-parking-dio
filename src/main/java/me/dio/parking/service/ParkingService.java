@@ -1,5 +1,6 @@
 package me.dio.parking.service;
 
+import me.dio.parking.exception.ParkingNotFoundException;
 import me.dio.parking.model.Parking;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,13 @@ public class ParkingService {
     static  {
         var id = getUUID();
         var id1 = getUUID();
+        var id2 = getUUID();
         Parking parking = new Parking(id, "DMS-1111", "SC", "CELTA", "PRATA");
         Parking parking1 = new Parking(id1, "ABC-1B34", "SP", "MITSUBISHI OUTLANDER", "PRETA");
+        Parking parking2 = new Parking(id2, "DEF-2G56", "SP", "VW BRASILIA", "AMARELA");
         parkingMap.put(id, parking);
         parkingMap.put(id1, parking1);
+        parkingMap.put(id2, parking2);
     }
 
     public List<Parking> findAll() {
@@ -31,7 +35,11 @@ public class ParkingService {
     }
 
     public Parking findById(String id) {
-        return parkingMap.get(id);
+        Parking parking = parkingMap.get(id);
+        if (parking == null) {
+            throw new ParkingNotFoundException(id);
+        }
+        return parking;
     }
 
     public Parking create(Parking parkingCreate) {
