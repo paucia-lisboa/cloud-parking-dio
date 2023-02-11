@@ -12,15 +12,13 @@ import io.restassured.RestAssured;
 import me.dio.parking.controller.dto.ParkingCreateDTO;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ParkingControllerTest {
+class ParkingControllerTest extends AbstractContainerBase {
 
     @LocalServerPort
     private int randomPort;
 
     @BeforeEach
-    public void setUpTest() {
-        RestAssured.port = randomPort;
-    }
+    public void setUpTest() { RestAssured.port = randomPort; }
 
     @Test
     void whenfindAllThenCheckResult() {

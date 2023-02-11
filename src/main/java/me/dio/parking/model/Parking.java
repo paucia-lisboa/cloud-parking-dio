@@ -2,8 +2,13 @@ package me.dio.parking.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Parking {
 
+    @Id
     private String id;
     private String license;
     private String state;
