@@ -13,6 +13,8 @@ Neste projeto você terá o desafio de desenvolver um conjunto de API’s utiliz
 </div>
 
 ## 🧩 Pré-requistos
+
+ <li>Fundamentos de Java</li>
  
  <li>Fundamentos do Spring Boot</li>
 
