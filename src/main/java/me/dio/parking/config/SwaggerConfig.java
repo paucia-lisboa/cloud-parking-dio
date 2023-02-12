@@ -28,7 +28,7 @@ public class SwaggerConfig {
     public Docket getDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("one.digitalinnovation.parking"))
+                .apis(RequestHandlerSelectors.basePackage("me.dio.parking"))
                 .build()
                 .apiInfo(metaData())
                 .securityContexts(Arrays.asList(actuatorSecurityContext()))
@@ -65,7 +65,7 @@ public class SwaggerConfig {
                 .description("Spring Boot REST API for Parking")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.txt")
                 .build();
     }
 

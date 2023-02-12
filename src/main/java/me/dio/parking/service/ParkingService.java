@@ -4,11 +4,11 @@ import me.dio.parking.exception.ParkingNotFoundException;
 import me.dio.parking.model.Parking;
 import me.dio.parking.repository.ParkingRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
 
 @Service
 public class ParkingService {
@@ -19,13 +19,10 @@ public class ParkingService {
         this.parkingRepository = parkingRepository;
     }
 
-    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    @Transactional(readOnly = true)
     public List<Parking> findAll() {
         return parkingRepository.findAll();
     }
-
-    private static String getUUID() {
-        return UUID.randomUUID().toString().replace("-", "");}
 
     @Transactional(readOnly = true)
     public Parking findById(String id) {
@@ -68,4 +65,7 @@ public class ParkingService {
         return parking;
     }
 
+    private static String getUUID() {
+        return UUID.randomUUID().toString().replace("-", "");
+    }
 }

@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import io.restassured.RestAssured;
 import me.dio.parking.controller.dto.ParkingCreateDTO;
 
+import static org.springframework.security.config.http.MatcherType.mvc;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ParkingControllerTest extends AbstractContainerBase {
 
@@ -18,11 +20,14 @@ class ParkingControllerTest extends AbstractContainerBase {
     private int randomPort;
 
     @BeforeEach
-    public void setUpTest() { RestAssured.port = randomPort; }
+    public void setUpTest() {
+        RestAssured.port = randomPort;
+    }
 
     @Test
     void whenfindAllThenCheckResult() {
         RestAssured.given()
+                .auth().basic("user", "Dio@12345")
                 .when()
                 .get("/parking")
                 .then()
@@ -39,6 +44,7 @@ class ParkingControllerTest extends AbstractContainerBase {
 
         RestAssured.given()
                 .when()
+                .auth().basic("user", "Dio@12345")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(createDTO)
                 .post("/parking")
@@ -46,6 +52,6 @@ class ParkingControllerTest extends AbstractContainerBase {
                 .statusCode(HttpStatus.CREATED.value())
                 .body("license", Matchers.equalTo("WRT-5555"))
                 .body("color", Matchers.equalTo("AMARELA"));
-
     }
+
 }
